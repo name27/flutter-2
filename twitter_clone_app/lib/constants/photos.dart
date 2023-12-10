@@ -38,6 +38,33 @@ class Photos {
     "https://picsum.photos/290/200",
     "https://picsum.photos/300/200",
   ];
+  static const List<String> photoUrl4 = [
+    "https://picsum.photos/200/301",
+    "https://picsum.photos/210/302",
+    "https://picsum.photos/230/303",
+    "https://picsum.photos/230/300",
+    "https://picsum.photos/240/300",
+    "https://picsum.photos/250/300",
+    "https://picsum.photos/260/300",
+    "https://picsum.photos/270/300",
+    "https://picsum.photos/280/300",
+    "https://picsum.photos/290/300",
+    "https://picsum.photos/300/300",
+  ];
+  static const List<String> photoUrl5 = [
+    "https://picsum.photos/300/401",
+    "https://picsum.photos/210/402",
+    "https://picsum.photos/240/403",
+    "https://picsum.photos/230/400",
+    "https://picsum.photos/240/400",
+    "https://picsum.photos/250/400",
+    "https://picsum.photos/260/400",
+    "https://picsum.photos/270/400",
+    "https://picsum.photos/280/400",
+    "https://picsum.photos/290/400",
+    "https://picsum.photos/300/400",
+  ];
+
   static const List<String> profileUrl = [
     "https://picsum.photos/200/210",
     "https://picsum.photos/210/220",

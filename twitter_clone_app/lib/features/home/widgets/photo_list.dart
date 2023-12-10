@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone_app/constants/photos.dart';
-import 'package:twitter_clone_app/constants/sizes.dart';
+import 'package:twitter_clone_app/constants/design/sizes.dart';
 
 class PhotoList extends StatelessWidget {
   const PhotoList({
@@ -15,7 +14,7 @@ class PhotoList extends StatelessWidget {
       controller: pageController,
       scrollDirection: Axis.horizontal,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      itemCount: 2,
+      itemCount: photoUrl.length,
       itemBuilder: (context, index) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: Sizes.size5),
         child: Container(

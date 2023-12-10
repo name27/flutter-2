@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone_app/constants/colors.dart';
-import 'package:twitter_clone_app/constants/gaps.dart';
-import 'package:twitter_clone_app/constants/sizes.dart';
+import 'package:twitter_clone_app/constants/design/colors.dart';
+import 'package:twitter_clone_app/constants/design/gaps.dart';
+import 'package:twitter_clone_app/constants/design/sizes.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({

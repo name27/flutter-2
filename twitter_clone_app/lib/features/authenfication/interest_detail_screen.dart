@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:twitter_clone_app/constants/colors.dart';
-import 'package:twitter_clone_app/constants/gaps.dart';
+import 'package:twitter_clone_app/constants/design/colors.dart';
+import 'package:twitter_clone_app/constants/design/gaps.dart';
 import 'package:twitter_clone_app/constants/interest_detail.dart';
 import 'package:twitter_clone_app/constants/my_interests.dart';
-import 'package:twitter_clone_app/constants/sizes.dart';
+import 'package:twitter_clone_app/constants/design/sizes.dart';
 import 'package:twitter_clone_app/features/authenfication/widgets/intereest_detail_box.dart';
 import 'package:twitter_clone_app/features/home/home_screen.dart';
 

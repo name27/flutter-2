@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:twitter_clone_app/constants/colors.dart';
-import 'package:twitter_clone_app/constants/gaps.dart';
-import 'package:twitter_clone_app/constants/sizes.dart';
-import 'package:twitter_clone_app/features/authenfication/widgets/photo_list.dart';
+import 'package:twitter_clone_app/constants/design/colors.dart';
+import 'package:twitter_clone_app/constants/design/gaps.dart';
+import 'package:twitter_clone_app/constants/design/sizes.dart';
+import 'package:twitter_clone_app/features/home/widgets/icon_profile_avatar.dart';
+import 'package:twitter_clone_app/features/home/widgets/more_bottom_sheet.dart';
+import 'package:twitter_clone_app/features/home/widgets/photo_list.dart';
+import 'package:twitter_clone_app/features/home/widgets/report_bottom_sheet.dart';
 
 class PostTile extends StatelessWidget {
   const PostTile({
     super.key,
-    this.profileUrl,
+    this.profile,
     this.nickname,
     this.content,
-    this.peopleProfileUrl,
     this.commentList,
     this.likes,
-    this.photoUrls,
+    this.photos,
+    this.replies,
+    this.time,
+    required this.peopleProfiles,
   });
-  final String? profileUrl;
+  final String? profile;
   final String? nickname;
   final String? content;
-  final List<String>? peopleProfileUrl;
-  final List<String>? photoUrls;
-
+  final List<String> peopleProfiles;
+  final List<String>? photos;
   final List<String>? commentList;
   final int? likes;
+  final int? replies;
+  final String? time;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +37,35 @@ class PostTile extends StatelessWidget {
       text: TextSpan(text: nickname),
       textDirection: TextDirection.ltr,
     );
-    TextPainter textPainter = TextPainter(
+    TextPainter contentPainter = TextPainter(
       text: TextSpan(text: content),
       textDirection: TextDirection.ltr,
     );
     nickNamePainter.layout();
-    textPainter.layout();
+    contentPainter.layout();
 
     const leftPosition = Sizes.size40 + Sizes.size20;
+
+    void reportTap() {
+      Navigator.pop(context);
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return const ReportBottomSheet();
+        },
+      );
+    }
+
+    void moreTap() {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return MoreBottomSheet(
+            reportOnTap: reportTap,
+          );
+        },
+      );
+    }
 
     return Stack(
       children: [
@@ -48,51 +75,29 @@ class PostTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Stack(
                 children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                  ),
                   Stack(
+                    clipBehavior: Clip.none,
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                      ),
                       Column(
                         children: [
-                          Stack(
-                            children: [
-                              const CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                radius: Sizes.size28,
-                              ),
-                              CircleAvatar(
-                                radius: Sizes.size24 + Sizes.size2,
-                                backgroundImage: profileUrl != null
-                                    ? NetworkImage(profileUrl!)
-                                    : null,
-                              ),
-                              const Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: Sizes.size14,
-                                ),
-                              ),
-                              const Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Icon(
-                                  Icons.add_circle,
-                                  size: Sizes.size28,
-                                ),
-                              ),
-                            ],
+                          IconProfileAvatar(
+                            profileUrl: profile,
+                            icon: const Icon(
+                              Icons.add_circle,
+                              size: Sizes.size28,
+                            ),
                           ),
                           Gaps.v10,
                           Container(
                             width: Sizes.size3,
-                            height: 220 + textPainter.height,
+                            height: (photos == null ? 0 : 200) +
+                                Sizes.size16 +
+                                contentPainter.height,
                             decoration: const BoxDecoration(
                               color: MyColors.lightGrey,
                             ),
@@ -116,7 +121,9 @@ class PostTile extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Text(textPainter.plainText),
+                            SizedBox(
+                                width: contentPainter.width,
+                                child: Text(contentPainter.plainText)),
                           ],
                         ),
                       ),
@@ -139,21 +146,27 @@ class PostTile extends StatelessWidget {
                       )
                     ],
                   ),
-                  const Row(
-                    children: [
-                      Text('2m'),
-                      Gaps.h5,
-                      Icon(Icons.more_horiz_outlined)
-                    ],
+                  Positioned(
+                    right: 0,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('${time}m'),
+                        Gaps.h5,
+                        GestureDetector(
+                            onTap: moreTap,
+                            child: const Icon(Icons.more_horiz_outlined))
+                      ],
+                    ),
                   ),
                 ],
               ),
               Gaps.v10,
-              const Row(
+              Row(
                 children: [
                   Stack(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: Sizes.size56,
                         height: Sizes.size56,
                       ),
@@ -163,6 +176,7 @@ class PostTile extends StatelessWidget {
                         child: CircleAvatar(
                           backgroundColor: Colors.red,
                           radius: Sizes.size11,
+                          backgroundImage: NetworkImage(peopleProfiles[0]),
                         ),
                       ),
                       Positioned(
@@ -170,6 +184,7 @@ class PostTile extends StatelessWidget {
                         right: 0,
                         child: CircleAvatar(
                           radius: Sizes.size14,
+                          backgroundImage: NetworkImage(peopleProfiles[1]),
                           backgroundColor: Colors.blueAccent,
                         ),
                       ),
@@ -179,34 +194,37 @@ class PostTile extends StatelessWidget {
                         bottom: Sizes.size3,
                         child: CircleAvatar(
                           backgroundColor: Colors.yellow,
+                          backgroundImage: NetworkImage(peopleProfiles[2]),
                           radius: Sizes.size10,
                         ),
                       ),
                     ],
                   ),
                   Gaps.h10,
-                  Text('36 replies'),
+                  Text('$replies replies'),
                   Gaps.h10,
-                  Icon(
+                  const Icon(
                     Icons.circle,
                     size: Sizes.size5,
                   ),
                   Gaps.h10,
-                  Text('27 likes'),
+                  Text('$likes likes'),
                 ],
               ),
             ],
           ),
         ),
         Gaps.h5,
-        photoUrls != null
+        photos != null
             ? Positioned(
-                top: textPainter.height + nickNamePainter.height + Sizes.size32,
+                top: contentPainter.height +
+                    nickNamePainter.height +
+                    Sizes.size32,
                 left: Sizes.size10,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 200,
-                  child: PhotoList(photoUrl: photoUrls!),
+                  child: PhotoList(photoUrl: photos!),
                 ),
               )
             : const SizedBox(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone_app/constants/colors.dart';
-import 'package:twitter_clone_app/constants/sizes.dart';
+import 'package:twitter_clone_app/constants/design/colors.dart';
+import 'package:twitter_clone_app/constants/design/sizes.dart';
 
 class OneTextfield extends StatelessWidget {
   const OneTextfield({

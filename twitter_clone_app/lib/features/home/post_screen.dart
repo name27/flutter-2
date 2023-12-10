@@ -1,38 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:twitter_clone_app/constants/colors.dart';
-import 'package:twitter_clone_app/constants/gaps.dart';
-import 'package:twitter_clone_app/constants/photos.dart';
-import 'package:twitter_clone_app/constants/sizes.dart';
-import 'package:twitter_clone_app/features/authenfication/widgets/photo_list.dart';
-import 'package:twitter_clone_app/features/authenfication/widgets/post_tile.dart';
+import 'package:twitter_clone_app/constants/dummy_data.dart';
+import 'package:twitter_clone_app/constants/design/gaps.dart';
+import 'package:twitter_clone_app/features/home/widgets/post_tile.dart';
 
 class PostScreen extends StatelessWidget {
-  const PostScreen({super.key});
+  const PostScreen({
+    super.key,
+    required this.scrollController,
+  });
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
-    List<int> likes = [210, 12, 636];
-    List<String> nicknames = ['aaaa', 'bbbb', 'cccc'];
-    List<String> contents = [
-      'aasdnjalsjdaaa',
-      'basdnaslndaksbbb',
-      'ccasdknalskndlascc'
-    ];
-    List<List<String>> photos = [
-      Photos.photoUrl,
-      Photos.photoUrl2,
-      Photos.photoUrl3
-    ];
-
     return ListView.separated(
-      itemCount: 3,
+      controller: scrollController,
+      itemCount: DummyData.sampleData.length,
       itemBuilder: (context, index) => PostTile(
-        profileUrl: Photos.profileUrl[index],
-        nickname: nicknames[index],
-        content: contents[index],
-        photoUrls: photos[index],
-        likes: likes[index],
+        profile: DummyData.sampleData[index]['profile'],
+        nickname: DummyData.sampleData[index]['nickname'],
+        content: DummyData.sampleData[index]['content'],
+        photos: DummyData.sampleData[index]['photos'],
+        likes: DummyData.sampleData[index]['likes'],
+        replies: DummyData.sampleData[index]['replies'],
+        time: DummyData.sampleData[index]['time'].toString(),
+        peopleProfiles: DummyData.sampleData[index]['peopleProfiles'],
       ),
       separatorBuilder: (context, index) => Gaps.v10,
     );

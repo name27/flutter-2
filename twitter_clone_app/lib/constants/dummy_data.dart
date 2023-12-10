@@ -1,0 +1,173 @@
+import 'package:faker/faker.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone_app/constants/design/sizes.dart';
+import 'package:twitter_clone_app/constants/photos.dart';
+
+class DummyData {
+  static final List<Map<String, dynamic>> sampleData = [
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[0],
+      'peopleProfiles': Photos.photoUrl5,
+      'photos': Photos.photoUrl4,
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'icon': const FaIcon(
+        FontAwesomeIcons.solidUser,
+        color: Colors.white,
+        size: Sizes.size14,
+      ),
+      'color': Colors.purple,
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[1],
+      'peopleProfiles': Photos.photoUrl3,
+      'photos': null,
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'icon': const FaIcon(
+        FontAwesomeIcons.solidHeart,
+        color: Colors.white,
+        size: Sizes.size14,
+      ),
+      'color': Colors.red,
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[2],
+      'peopleProfiles': [
+        Photos.photoUrl[5],
+        Photos.photoUrl[6],
+        Photos.photoUrl[7],
+      ],
+      'photos': Photos.photoUrl2,
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'icon': const FaIcon(
+        FontAwesomeIcons.solidHeart,
+        color: Colors.white,
+        size: Sizes.size14,
+      ),
+      'color': Colors.red,
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence() +
+          faker.lorem.sentence() +
+          faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[3],
+      'peopleProfiles': Photos.photoUrl3.reversed.toList(),
+      'photos': null,
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'icon': const FaIcon(
+        FontAwesomeIcons.solidShareFromSquare,
+        color: Colors.white,
+        size: Sizes.size14,
+      ),
+      'color': Colors.blueAccent,
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[4],
+      'peopleProfiles': [
+        Photos.photoUrl3[6],
+        Photos.photoUrl3[7],
+        Photos.photoUrl3[8],
+      ],
+      'photos': Photos.photoUrl2.reversed.toList(),
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'icon': const FaIcon(
+        FontAwesomeIcons.circleExclamation,
+        color: Colors.white,
+        size: Sizes.size14,
+      ),
+      'color': Colors.greenAccent,
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[5],
+      'peopleProfiles': [
+        Photos.photoUrl3[6],
+        Photos.photoUrl3[7],
+        Photos.photoUrl3[8],
+      ],
+      'photos': Photos.photoUrl2.reversed.toList(),
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[6],
+      'peopleProfiles': [
+        Photos.photoUrl3[6],
+        Photos.photoUrl3[7],
+        Photos.photoUrl3[8],
+      ],
+      'photos': Photos.photoUrl2.reversed.toList(),
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[7],
+      'peopleProfiles': [
+        Photos.photoUrl3[6],
+        Photos.photoUrl3[7],
+        Photos.photoUrl3[8],
+      ],
+      'photos': Photos.photoUrl2.reversed.toList(),
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+      'bool': faker.randomGenerator.boolean(),
+    },
+    {
+      'nickname': faker.person.name(),
+      'content': faker.lorem.sentence(),
+      'likes': faker.randomGenerator.integer(1500),
+      'time': faker.randomGenerator.integer(59, min: 1),
+      'profile': Photos.profileUrl[0],
+      'peopleProfiles': [
+        Photos.photoUrl3[6],
+        Photos.photoUrl3[7],
+        Photos.photoUrl3[8],
+      ],
+      'photos': Photos.photoUrl2.reversed.toList(),
+      'replies': faker.randomGenerator.integer(200),
+      'followers': faker.randomGenerator.integer(999, min: 1),
+    }
+  ];
+}
